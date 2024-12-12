@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Brain Activity</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0e2037;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .scroll-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-section {
+            height: 100vh; /* Full viewport height for each section */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0 20px;
+            z-index: 3; /* Ensure text stays above images */
+        }
+
+        .image-container {
+            position: fixed; /* Images stay fixed to the left */
+            top: 0;
+            left: 0; /* Align to the left */
+            width: 75%; /* Cover half the viewport width */
+            height: 100%;
+            z-index: 1; /* Images stay behind text */
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none; /* Ensure text is clickable */
+        }
+
+        .scroll-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-container.visible {
+            opacity: 1; /* Make the visible image fully opaque */
+        }
+
+        .scroll-section h2 {
+            font-size: 2rem;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 10px;
+        }
+
+        .scroll-section p {
+            font-size: 1rem;
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .text-container {
+            position: relative;
+            width: 25%; /* Center the text on the right half of the screen */
+            margin-left: auto; /* Push to the right */
+            z-index: 3; /* Ensure it stays above the image */
+        }
+
+        /* Top Section */
+        .top-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a2947;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 4; /* Ensure it stays above the images */
+        }
+
+        .top-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .top-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        /* Bottom Section */
+        .bottom-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a2947;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .bottom-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .bottom-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Section -->
+    <div class="top-section">
+        <h1>Start</h1>
+        <p>
+            Sleep is not just rest for the body but a highly active state for the brain. 
+            It is vital for memory consolidation, emotional regulation, and overall health.
+        </p>
+    </div>
+
+    <div class="top-section">
+        <h1>What Happens When We Sleep?</h1>
+        <p>
+            Sleep is not just rest for the body but a highly active state for the brain. 
+            It is vital for memory consolidation, emotional regulation, and overall health.
+        </p>
+    </div>
+
+    <!-- Scrollable Sections -->
+    <div class="scroll-container">
+        <!-- Image Containers -->
+        <div class="image-container visible">
+            <img src="sleep-brain-steps-1-md.jpg" class="scroll-image" alt="Step 1">
+        </div>
+        <div class="image-container">
+            <img src="sleep-brain-steps-1-md.jpg" class="scroll-image" alt="Step 2">
+        </div>
+        <div class="image-container">
+            <img src="sleep-brain-steps-2-md.jpg" class="scroll-image" alt="Step 3">
+        </div>
+        <div class="image-container">
+            <img src="sleep-brain-steps-3-md.jpg" class="scroll-image" alt="Step 4">
+        </div>
+
+        <div class="image-container">
+            <img src="sleep-brain-steps-4-md.jpg" class="scroll-image" alt="Step 5">
+        </div>
+
+        <!-- Text Sections -->
+        <div class="scroll-section">
+            <div class="text-container">
+                <h2>Step 1: Introduction</h2>
+                <p>This is the first step where we learn about sleep.</p>
+            </div>
+        </div>
+        <div class="scroll-section">
+            <div class="text-container">
+                <h2>Step 2: Brain Activation</h2>
+                <p>Here, we explore the active brain during sleep.</p>
+            </div>
+        </div>
+        <div class="scroll-section">
+            <div class="text-container">
+                <h2>Step 3: Deep Sleep</h2>
+                <p>Deep sleep helps consolidate memories and rest.</p>
+            </div>
+        </div>
+        <div class="scroll-section">
+            <div class="text-container">
+                <h2>Step 4: Wakefulness</h2>
+                <p>The transition back to wakefulness completes the cycle.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="bottom-section">
+        <h1>When Sleep Goes Wrong</h1>
+        <p>
+            Lack of sleep or poor sleep quality can lead to numerous health problems, 
+            including impaired memory, reduced immunity, and increased risk of chronic diseases.
+        </p>
+    </div>
+
+    <script>
+        const imageContainers = document.querySelectorAll(".image-container");
+        const sections = document.querySelectorAll(".scroll-section");
+
+        window.addEventListener("scroll", () => {
+            let currentSectionIndex = Math.round(window.scrollY / window.innerHeight);
+
+            imageContainers.forEach((container, index) => {
+                if (index === currentSectionIndex) {
+                    container.classList.add("visible");
+                } else {
+                    container.classList.remove("visible");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
